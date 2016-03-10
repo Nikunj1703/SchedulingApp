@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"> 
+    <h:head>
+        <title>Update Professor</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min1.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label class="control-label">Name:</label>
+                    </div>
+                    <div class="col-lg-6">
+                        #{professorUpdateController.theUpdateProfessorModel.professorName}
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label class="control-label">Employment Status:</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <c:choose>
+                        <c:when test="#{professorUpdateController.theUpdateProfessorModel.employmentStatus == 1}">
+                            <h:selectBooleanCheckbox  value="true" onchange="submit()"
+                             valueChangeListener="#{professorUpdateController.empValueChangeTF(this)}"></h:selectBooleanCheckbox>
+                        </c:when>
+                        <c:otherwise>
+                          <h:selectBooleanCheckbox  value="false" onchange="submit()"
+                             valueChangeListener="#{professorUpdateController.empValueChangeFT(this)}"></h:selectBooleanCheckbox>
+                        </c:otherwise>
+                      </c:choose>
+                        
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label class="control-label">Teaching Status:</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <c:choose>
+                        <c:when test="#{professorUpdateController.theUpdateProfessorModel.teachingStatus == 1}">
+                            <h:selectBooleanCheckbox  value="true" onchange="submit()"
+                             valueChangeListener="#{professorUpdateController.teachValueChangeTF(this)}"></h:selectBooleanCheckbox>
+                        </c:when>
+                        <c:otherwise>
+                          <h:selectBooleanCheckbox  value="false" onchange="submit()"
+                             valueChangeListener="#{professorUpdateController.teachValueChangeFT(this)}"></h:selectBooleanCheckbox>
+                        </c:otherwise>
+                      </c:choose>
+                        
+                    </div>
+                </div>
+                 
+                <h:commandButton value="Update" action="#{professorUpdateController.updateProfessorData}" styleClass="btn btn-success"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
